@@ -120,7 +120,8 @@ func (l *DefaultLogFormatter) NewLogEntry(r *http.Request) LogEntry {
 	cW(entry.buf, useColor, nCyan, "%s://%s%s %s\" ", scheme, r.Host, r.RequestURI, r.Proto)
 
 	entry.buf.WriteString("from ")
-	entry.buf.WriteString(r.RemoteAddr)
+	// entry.buf.WriteString(r.RemoteAddr)
+	entry.buf.WriteString(r.Header.Get("Fly-Client-IP"))
 	entry.buf.WriteString(" - ")
 
 	return entry
