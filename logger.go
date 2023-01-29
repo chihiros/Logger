@@ -121,7 +121,12 @@ func (l *DefaultLogFormatter) NewLogEntry(r *http.Request) LogEntry {
 
 	entry.buf.WriteString("from ")
 	// entry.buf.WriteString(r.RemoteAddr)
-	entry.buf.WriteString(r.Header.Get("Fly-Client-IP"))
+	fip := r.Header.Get("Fly-Client-IP")
+	if fip != "" {
+		entry.buf.WriteString(fip)
+	} else {
+		entry.buf.WriteString(r.RemoteAddr)
+	}
 	entry.buf.WriteString(" - ")
 
 	return entry
