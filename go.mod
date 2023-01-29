@@ -1,3 +1,3 @@
-module github.com.com/chihiros/logger
+module github.com/chihiros/logger
 
 go 1.19
